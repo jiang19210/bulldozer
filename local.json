@@ -1,0 +1,32 @@
+{
+  "apps": [
+    {
+      "name": "spider-server",
+      "script": "bin/www",
+      "args": [],
+      "watch": false,
+      "ignore_watch": [".git", "node_modules", "logs", ".gitignore"],
+      "watch_options": {
+        "followSymlinks": false
+      },
+      "node_args": "--harmony",
+      "min_uptime": "120s",
+      "max_restarts": 10,
+      "merge_logs": false,
+      "log_date_format": "YYYY-MM-DD HH:mm:ss.SSS",
+      "instances": 1,
+      "env_dev": {
+        "NODE_CONFIG_DIR": "./config",
+        "NODE_ENV": "development"
+      },
+      "env_local": {
+        "NODE_CONFIG_DIR": "./config",
+        "NODE_ENV": "local"
+      },
+      "env": {
+        "NODE_CONFIG_DIR": "./config",
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
