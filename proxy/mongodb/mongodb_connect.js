@@ -37,8 +37,10 @@ function connect(callback) {
 
 exports.mongodb = function (callback) {
     if (client === null) {
-        global.HEALTH.mongodb = {'status' : 'DOWN'};
         connect(callback);
+    }
+    if (client === null) {
+        global.HEALTH.mongodb = {'status' : 'DOWN'};
     } else {
         global.HEALTH.mongodb = {'status' : 'UP'};
     }
