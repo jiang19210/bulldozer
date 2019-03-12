@@ -23,8 +23,12 @@ function connect() {
     if (client === null) {
         global.HEALTH.redis = {'status': 'DOWN'};
         throw new Error('redis connect fail')
+    } else {
+        client.on('error', function (err) {
+            console.error('redis连接发生异常.%s', err);
+            global.HEALTH.mysql = {'status' : 'DOWN'};
+        })
     }
-
     return client
 }
 

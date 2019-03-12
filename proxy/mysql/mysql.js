@@ -32,6 +32,7 @@ exports.select = function (collection, callback) {
 exports.insert = function (collection, callback) {
     collection.operate = 'insert';
     let $set = collection.$set;
+    let duplicate = collection.duplicate;
     if ($set == null) {
         callback({'error': 'insert必须包含$set.'});
     } else if (!Array.isArray($set)) {
@@ -44,11 +45,8 @@ exports.insert = function (collection, callback) {
         for (let i = 0; i < $set.length; i++) {
             let param_pair = $set[i];
             for (let key in param_pair) {
-                let val = param_pair[key];
-                if (val !== undefined) {
-                    a += '??,';
-                    b += '?,';
-                }
+                a += '??,';
+                b += '?,';
             }
             a = strings.reEndComma(a, ',');
             b = strings.reEndComma(b, ',');
@@ -58,6 +56,13 @@ exports.insert = function (collection, callback) {
             } else {
                 result_sql += a + b + '),';
                 b = '';
+            }
+        }
+        if (duplicate) {
+            result_sql = strings.reEndComma(result_sql, ',');
+            result_sql += ' on duplicate key update ';
+            for (var i = 0; i < duplicate.length; i ++) {
+                result_sql += duplicate[i] + '=values(' + duplicate[i] + '),';
             }
         }
         result_sql = strings.reEndComma(result_sql, ',');
@@ -134,7 +139,6 @@ exports.update = function (collection, callback) {
         pool.query(result_sql, callback);
     }
 };
-
 exports.insert_or_update = function (collection, callback) {
     collection.operate = 'insert_or_update';
     let query = collection.query;
@@ -191,10 +195,8 @@ function init_mysql_collection(collection) {
             let param_pair = $set[i];
             for (let key in param_pair) {
                 let val = param_pair[key];
-                if (val !== undefined) {
-                    keys = keys + key + separator;
-                    values = values + val + separator;
-                }
+                keys = keys + key + separator;
+                values = values + val + separator;
             }
             if (result_sql) {
                 result_sql += values;
@@ -262,4 +264,3 @@ function init_mysql_collection(collection) {
         return result_sql.split(separator);
     }
 }
-
