@@ -9,11 +9,12 @@ exports.select = function (collection, callback) {
     collection.operate = 'select';
     let arr = init_mysql_collection(collection);
     let query = collection.query;
-    let result_sql = "SELECT * FROM ?? WHERE 1=1";
+    let result_sql = "SELECT * FROM ??";
     if (query) {
+        result_sql += ' WHERE ';
         for (let key in query) {
             let val = query[key];
-            if (val !== undefined) {
+            if (val) {
                 result_sql += ' and ?? = ? ';
             }
         }
@@ -84,11 +85,8 @@ exports.insert_one = function (collection, callback) {
         let a = 'insert into ?? (';
         let b = ') values (';
         for (let key in $set) {
-            let val = $set[key];
-            if (val !== undefined) {
-                a += '??,';
-                b += '?,';
-            }
+            a += '??,';
+            b += '?,';
         }
         a = strings.reEndComma(a, ',');
         b = strings.reEndComma(b, ',');
@@ -119,17 +117,17 @@ exports.update = function (collection, callback) {
         if ($set) {
             for (let key in $set) {
                 let val = $set[key];
-                if (val !== undefined) {
+                if (val) {
                     result_sql += ' ?? = ? ,';
                 }
             }
         }
         result_sql = strings.reEndComma(result_sql, ',');
-        result_sql += ' WHERE 1=1 ';
         if (query) {
+            result_sql += ' WHERE ';
             for (let key in query) {
                 let val = query[key];
-                if (val !== undefined) {
+                if (val) {
                     result_sql += ' and ?? = ? ';
                 }
             }
@@ -152,11 +150,12 @@ exports.insert_or_update = function (collection, callback) {
         collection.operate = 'select';
         let arr = init_mysql_collection(collection);
         collection.operate = 'insert_or_update';
-        let result_sql = "SELECT COUNT(1) COUNT FROM ?? WHERE 1=1";
+        let result_sql = "SELECT COUNT(1) COUNT FROM ?? ";
         if (query) {
+            result_sql += ' WHERE ';
             for (let key in query) {
                 let val = query[key];
-                if (val !== undefined) {
+                if (val) {
                     result_sql += ' and ?? = ? ';
                 }
             }
@@ -213,7 +212,7 @@ function init_mysql_collection(collection) {
         if (query) {
             for (let key in query) {
                 let val = query[key];
-                if (val !== undefined) {
+                if (val) {
                     result_sql += key + separator + query[key] + separator;
                 }
             }
@@ -228,7 +227,7 @@ function init_mysql_collection(collection) {
         if ($set) {
             for (let key in $set) {
                 let val = $set[key];
-                if (val !== undefined) {
+                if (val) {
                     result_sql += key + separator + val + separator;
                 }
             }
@@ -249,10 +248,8 @@ function init_mysql_collection(collection) {
         let values = '';
         for (let key in $set) {
             let val = $set[key];
-            if (val !== undefined) {
-                keys = keys + key + separator;
-                values = values + val + separator;
-            }
+            keys = keys + key + separator;
+            values = values + val + separator;
         }
         if (result_sql) {
             result_sql += values;
