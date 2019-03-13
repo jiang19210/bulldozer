@@ -352,22 +352,11 @@ Worker.prototype.mysql_update = function (req, res, collection) {
     });
 };
 
-Worker.prototype.mysql_save_one = function (req, res, collection) {
-    mysql.insert_one(collection, function (err, results) {
-        handlerResponse(res, err, results, null, 'mysql.mysql_save_one');
-    });
-};
-
-Worker.prototype.mysql_save_or_update = function (req, res, collection) {
-    mysql.insert_or_update(collection, function (err, results) {
-        handlerResponse(res, err, results, null, 'mysql.mysql_save_or_update');
-    });
-};
 Worker.prototype.mysql_select = function (req, res, collection) {
     mysql.select(collection, function (err, results) {
         handlerResponse(res, err, results, null, 'mysql.mysql_select');
     });
 };
 
-Worker.prototype.funs = ['spopsadd', 'multisaddOrBak', 'delOrBak', 'rpop', 'lpushs', 'find', 'findAndModify', 'save', 'saveOrUpdateAll', 'rpoplpush', 'saveOrUpdate', 'dropCollection', 'findField', 'exists', 'incr', 'remove', 'mysql_save', 'mysql_update', 'mysql_save_one', 'mysql_save_or_update', 'mysql_select', 'multilpush', 'sadds', 'multisadd', 'spop', 'saddDistinct', 'saddDistincts', 'lpop', 'del', 'get', 'set'];
+Worker.prototype.funs = ['spopsadd', 'multisaddOrBak', 'delOrBak', 'rpop', 'lpushs', 'find', 'findAndModify', 'save', 'saveOrUpdateAll', 'rpoplpush', 'saveOrUpdate', 'dropCollection', 'findField', 'exists', 'incr', 'remove', 'mysql_save', 'mysql_update', 'mysql_select', 'multilpush', 'sadds', 'multisadd', 'spop', 'saddDistinct', 'saddDistincts', 'lpop', 'del', 'get', 'set'];
 module.exports = Worker;
