@@ -1,7 +1,8 @@
 "use strict";
 var express = require('express');
 var router = express.Router();
-var worker = require('../proxy/worker');
+var Worker = require('../proxy/worker');
+var worker = new Worker();
 /* GET home page. */
 router.get('/', function (req, res) {
     res.render('index', {title: 'schedule-server'});
