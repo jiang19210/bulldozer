@@ -12,7 +12,7 @@
 
 #### 使用说明
 
-1. 配置db连接，完整配置如下，
+1. 配置db连接，完整配置如下:https://github.com/jiang19210/bulldozer/blob/master/config/local.json
     （1）除了redis是必须，mongodb和mysql可以不进行配置；但是如果利用bulldozer存储数据到mysql或者mongodb就需要进行配置
     （2）redis配置中cluster里面是集群配置，和单机配置只需要一个即可，如果两个都配置了，会优先连接集群配置，既单机配置失效
 2.  pm2 start local --env local即可运行起来
