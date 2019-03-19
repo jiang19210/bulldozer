@@ -1,37 +1,19 @@
-# bulldozer
+# bulldozer-c
 
-#### 介绍
-bulldozer 爬虫服务端
-
+#### 项目介绍
+爬虫服务端，爬虫服务端，负责连接各种db(目前支持：redis、mongodb、mysql)，提供查询、插入、更新等操作
+****
 #### 软件架构
-软件架构说明
-
-
+![avatar](https://github.com/jiang19210/data/blob/master/bulldozer.png?raw=true)
+****
 #### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
+1. 安装nodejs、pm2，安装最新版本即可
+2. 安装redis(必须)、mongodb(不必须)、mysql(不必须)
 
 #### 使用说明
 
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 参与贡献
-
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
-
-
-#### 码云特技
-
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1. 配置db连接，完整配置如下，
+    （1）除了redis是必须，mongodb和mysql可以不进行配置；但是如果利用bulldozer存储数据到mysql或者mongodb就需要进行配置
+    （2）redis配置中cluster里面是集群配置，和单机配置只需要一个即可，如果两个都配置了，会优先连接集群配置，既单机配置失效
+2.  pm2 start local --env local即可运行起来
+3.打开地址 http://127.0.0.1:9966/health 如果正常就说明启动成功

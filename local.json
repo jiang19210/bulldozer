@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "spider-server",
+      "name": "bulldozer",
       "script": "bin/www",
       "args": [],
       "watch": false,
@@ -21,6 +21,7 @@
       },
       "env_local": {
         "NODE_CONFIG_DIR": "./config",
+        "PORT" : 9966,
         "NODE_ENV": "local"
       },
       "env": {

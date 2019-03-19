@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "spider-server",
+      "name": "bulldozer",
       "script": "bin/www",
       "args": [],
       "watch": false,
