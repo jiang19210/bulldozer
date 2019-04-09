@@ -37,24 +37,24 @@ exports.select = function (collection, callback) {
 
 exports.insert = function (collection, callback) {
     let name = collection.name;
-    let $set = collection.$set;
+    let data = collection.data;
     let duplicate = collection.duplicate;
 
-    if ($set == null || $set.length === 0) {
-        callback({'error': 'insert必须包含$set'});
-    } else if (!Array.isArray($set)) {
-        callback({'error': 'insert属性$set必须为数组'});
+    if (data == null || data.length === 0) {
+        callback({'error': 'insert必须包含data'});
+    } else if (!Array.isArray(data)) {
+        callback({'error': 'insert属性data必须为数组'});
     } else {
         let fields = [name];
         let a = 'INSERT INTO ?? (';
-        for (let key in $set[0]) {
+        for (let key in data[0]) {
             fields.push(key);
             a += '??,';
         }
         let sql = strings.reEndComma(a, ',') + ') VALUES ';
         var values = '(';
-        for (let i = 0; i < $set.length; i++) {
-            let pair = $set[i];
+        for (let i = 0; i < data.length; i++) {
+            let pair = data[i];
             for (let key in pair) {
                 fields.push(pair[key]);
                 values += '?,';
@@ -79,19 +79,19 @@ exports.insert = function (collection, callback) {
 
 exports.update = function (collection, callback) {
     let name = collection.name;
-    let $set = collection.$set;
+    let data = collection.data;
     let query = collection.query;
 
-    if ($set == null) {
-        callback({'error': 'update必须包含$set'});
-    } else if (Array.isArray($set)) {
-        callback({'error': 'update属性$set不可以为数组'});
+    if (data == null) {
+        callback({'error': 'update必须包含data'});
+    } else if (Array.isArray(data)) {
+        callback({'error': 'update属性data不可以为数组'});
     } else {
         let fields = [name];
         let sql = 'UPDATE ?? SET ';
-        for (let key in $set) {
+        for (let key in data) {
             fields.push(key);
-            fields.push($set[key]);
+            fields.push(data[key]);
             sql += ' ?? = ? ,';
         }
         sql = strings.reEndComma(sql, ',');
