@@ -17,3 +17,9 @@
     （2）redis配置中cluster里面是集群配置，和单机配置只需要一个即可，如果两个都配置了，会优先连接集群配置，既单机配置失效
 2. pm2 start local.json --env local即可运行起来
 3. 打开地址 http://127.0.0.1:9966/health 如果正常就说明启动成功
+
+
+
+****
+客户端：https://github.com/jiang19210/bulldozer
+完整例子：https://github.com/jiang19210/bulldozer-c-example
