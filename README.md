@@ -1,4 +1,4 @@
-# bulldozer-c
+# bulldozer
 
 #### 项目介绍
 爬虫服务端，负责连接各种db(目前支持：redis、mongodb、mysql)，提供查询、插入、更新等操作
