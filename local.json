@@ -15,10 +15,6 @@
       "merge_logs": false,
       "log_date_format": "YYYY-MM-DD HH:mm:ss.SSS",
       "instances": 1,
-      "env_dev": {
-        "NODE_CONFIG_DIR": "./config",
-        "NODE_ENV": "development"
-      },
       "env_local": {
         "NODE_CONFIG_DIR": "./config",
         "PORT" : 9966,
