@@ -21,7 +21,6 @@ pool.on('acquire', function (connection) {
     debug('Connection %d acquired', connection.threadId);
 });
 pool.on('connection', function (connection) {
-    global.HEALTH.mysql = {'status' : 'UP'};
     console.log('连接池建立新连接')
 });
 pool.on('enqueue', function () {
@@ -32,6 +31,5 @@ pool.on('release', function (connection) {
 });
 pool.on('error', function (err) {
     console.error('mysql连接发生异常.%s', err);
-    global.HEALTH.mysql = {'status' : 'DOWN'};
 });
 module.exports = pool;

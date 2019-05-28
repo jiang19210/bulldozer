@@ -21,12 +21,10 @@ function connect() {
         console.log('redis connected');
     }
     if (client === null) {
-        global.HEALTH.redis = {'status': 'DOWN'};
         throw new Error('redis connect fail')
     } else {
         client.on('error', function (err) {
             console.error('redis连接发生异常.%s', err);
-            global.HEALTH.mysql = {'status' : 'DOWN'};
         })
     }
     return client
@@ -35,11 +33,6 @@ function connect() {
 exports.redis = function () {
     if (client === null) {
         connect();
-    }
-    if (client == null) {
-        global.HEALTH.redis = {'status': 'DOWN'};
-    } else {
-        global.HEALTH.redis = {'status': 'UP'};
     }
     return client;
 };

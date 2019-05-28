@@ -13,6 +13,6 @@ router.post('/worker/:event', function (req, res) {
     worker.emit(event, req, res, collection);
 });
 router.get('/health', function (req, res) {
-    res.send(global.HEALTH);
+    res.send({});
 });
 module.exports = router;

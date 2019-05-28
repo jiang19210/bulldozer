@@ -1,10 +1,4 @@
 "use strict";
-global.HEALTH = {
-    'status': 'UP',
-    'mysql': {'status': 'DOWN'},
-    'mongodb': {'status': 'DOWN'},
-    'redis': {'status': 'DOWN'}
-};
 var favicon = require('serve-favicon');
 var express = require('express');
 var path = require('path');
