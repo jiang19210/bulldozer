@@ -319,7 +319,7 @@ Worker.prototype.remove = function (req, res, collection) {
 };
 Worker.prototype.set = function (req, res, collection) {
     var name = collection.name;
-    var value = collection.data.value;
+    var value = collection.data;
     redis.set(name, value, function (err, result) {
         handlerResponse(res, err, result, 'redis.set');
     });
