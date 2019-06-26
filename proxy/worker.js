@@ -282,8 +282,9 @@ Worker.prototype.multisaddOrBak = function (req, res, collection) {
     });
 };
 Worker.prototype.spopsadd = function (req, res, collection) {
-    var name = collection.name;
-    redis.spopsadd(name, function (err, result) {
+    var name0 = collection.name0;
+    var name1 = collection.name1;
+    redis.spopsadd(name0, name1, function (err, result) {
         handlerResponse(res, err, result, 'redis.spopsadd');
     });
 };
