@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "test": "node ./bin/www",
-    "start": "pm2 start local --local"
+    "start": "pm2 start local.json"
   },
   "dependencies": {
     "body-parser": "1.15.1",
