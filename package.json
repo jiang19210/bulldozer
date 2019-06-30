@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "test": "node ./bin/www",
-    "start": "pm2 start local.json"
+    "start": "pm2 start local.json",
+    "stop": "pm2 stop bulldozer"
   },
   "dependencies": {
     "body-parser": "1.15.1",

@@ -14,7 +14,7 @@
       "max_restarts": 10,
       "merge_logs": false,
       "log_date_format": "YYYY-MM-DD HH:mm:ss.SSS",
-      "instances": 1,
+      "instances": "max",
       "env_local": {
         "NODE_CONFIG_DIR": "./config",
         "PORT" : 8080,
