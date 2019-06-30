@@ -151,11 +151,11 @@ exports.saddDistincts = function (key, arr, f) {
         });
     }
 };
-exports.spopsadd = function (key, f) {
-    client.spop(key, function (err, result) {
+exports.spopsadd = function (source, destination, f) {
+    client.spop(source, function (err, result) {
         f(err, result);
         if (result != null) {
-            client.sadd([key + ':Bak', result]);
+            client.sadd([destination, result]);
         }
     });
 };
