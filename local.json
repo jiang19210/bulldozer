@@ -17,7 +17,7 @@
       "instances": 1,
       "env_local": {
         "NODE_CONFIG_DIR": "./config",
-        "PORT" : 9966,
+        "PORT" : 8080,
         "NODE_ENV": "local"
       }
     }
