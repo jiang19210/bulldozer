@@ -19,10 +19,6 @@
         "NODE_CONFIG_DIR": "./config",
         "PORT" : 9966,
         "NODE_ENV": "local"
-      },
-      "env": {
-        "NODE_CONFIG_DIR": "./config",
-        "NODE_ENV": "production"
       }
     }
   ]
