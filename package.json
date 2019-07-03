@@ -14,11 +14,9 @@
     "ejs": "2.4.1",
     "events": "1.1.1",
     "express": "4.13.4",
-    "http-clientp": "0.0.25",
     "ioredis": "3.2.2",
     "mongodb": "2.2.10",
     "mysql": "2.15.0",
-    "node-uuid": "1.4.8",
     "serve-favicon": "2.3.0",
     "redis": "2.6.2"
   }

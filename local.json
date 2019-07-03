@@ -14,6 +14,7 @@
       "max_restarts": 10,
       "merge_logs": false,
       "log_date_format": "YYYY-MM-DD HH:mm:ss.SSS",
+      "exec_mode": "cluster",
       "instances": "max",
       "env_local": {
         "NODE_CONFIG_DIR": "./config",
