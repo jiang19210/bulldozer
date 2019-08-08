@@ -46,16 +46,19 @@ exports.insert = function (collection, callback) {
         callback({'error': 'insert属性data必须为数组'});
     } else {
         let fields = [name];
+        let insertFields = [];
         let a = 'INSERT INTO ?? (';
         for (let key in data[0]) {
             fields.push(key);
+            insertFields.push(key);
             a += '??,';
         }
         let sql = strings.reEndComma(a, ',') + ') VALUES ';
-        var values = '(';
+        let values = '(';
         for (let i = 0; i < data.length; i++) {
             let pair = data[i];
-            for (let key in pair) {
+            for (let j = 0; j < insertFields.length; j++) {
+                let key = insertFields[j];
                 fields.push(pair[key]);
                 values += '?,';
             }
@@ -66,7 +69,7 @@ exports.insert = function (collection, callback) {
         if (duplicate) {
             sql = strings.reEndComma(sql, ',');
             sql += ' ON DUPLICATE KEY UPDATE ';
-            for (var i = 0; i < duplicate.length; i++) {
+            for (let i = 0; i < duplicate.length; i++) {
                 sql += duplicate[i] + '=VALUES(' + duplicate[i] + '),';
             }
         }
