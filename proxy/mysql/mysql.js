@@ -39,6 +39,7 @@ exports.insert = function (collection, callback) {
     let name = collection.name;
     let data = collection.data;
     let duplicate = collection.duplicate;
+    let columns = collection.columns;
 
     if (data == null || data.length === 0) {
         callback({'error': 'insert必须包含data'});
@@ -48,10 +49,18 @@ exports.insert = function (collection, callback) {
         let fields = [name];
         let insertFields = [];
         let a = 'INSERT INTO ?? (';
-        for (let key in data[0]) {
-            fields.push(key);
-            insertFields.push(key);
-            a += '??,';
+        if (columns) {
+            for (let i = 0; i < columns.length; i ++) {
+                fields.push(columns[i]);
+                insertFields.push(columns[i]);
+                a += '??,';
+            }
+        } else {
+            for (let key in data[0]) {
+                fields.push(key);
+                insertFields.push(key);
+                a += '??,';
+            }
         }
         let sql = strings.reEndComma(a, ',') + ') VALUES ';
         let values = '(';
