@@ -21,5 +21,5 @@
 * 打开地址 http://127.0.0.1:8080/ 如果正常就说明启动成功
 
 ****
-* 客户端：https://github.com/jiang19210/bulldozer
+* 客户端：https://www.npmjs.com/package/bulldozer-c
 * 完整例子：https://github.com/jiang19210/bulldozer-c-example
