@@ -199,3 +199,9 @@ exports.exists = function (key, f) {
 exports.incr = function (key, f) {
     client.incr(key, f);
 };
+exports.llen = function (key, f) {
+    client.llen(key, f);
+};
+exports.scard = function (key, f) {
+    client.scard(key, f);
+};
