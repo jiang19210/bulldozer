@@ -112,6 +112,45 @@ exports.multisadd = function (key, arr, f) {
         f(err, result);
     });
 };
+exports.lpushDistinct = function (key, value, f) {
+    let keyBak = key + ':distinct';
+    let md5 = null;
+    if (typeof value === 'object') {
+        md5 = value.md5;
+        value = JSON.stringify(value);
+    }
+    if (md5 == null) {
+        md5 = value;
+    }
+    client.sadd(keyBak, md5, function (err, result) {
+        if (1 === result) {
+            client.lpush(key, value, function () {
+                f(err, result);
+            });
+        } else {
+            f(err, result);
+        }
+    });
+};
+exports.lpushDistincts = function (key, arr, f) {
+    if (Array.isArray(arr) && arr.length === 1) {
+        arr = arr[0];
+    }
+    if (typeof key === 'string' && Array.isArray(arr)) {
+        for (let i = 0; i < arr.length; i++) {
+            this.lpushDistinct(key, arr[i], function (err, result) {
+                if (err) {
+                    console.error('lpushDistincts 发生异常. s% -- %s', err, result);
+                }
+            });
+        }
+        f('', arr.length);
+    } else {
+        this.lpushDistinct(key, arr, function (err, result) {
+            f(err, result);
+        });
+    }
+};
 exports.saddDistinct = function (key, value, f) {
     let keyBak = key + ':distinct';
     let md5 = null;

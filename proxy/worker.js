@@ -241,6 +241,21 @@ Worker.prototype.saddDistincts = function (req, res, collection) {
         });
     }
 };
+Worker.prototype.lpushDistincts = function (req, res, collection) {
+    var name = collection.name;
+    var data = collection.data;
+    if (typeof data == 'string') {
+        data = JSON.parse(data)
+    }
+    if (data == null || data.length == 0) {
+        console.log('[%s]-[lpushDistincts] - 数据为空. ', __dirname);
+        res.send({'result': '[lpushDistincts] - 数据为空,加入队列失败.', 'is_success': false});
+    } else {
+        redis.lpushDistincts(name, data, function (err, result) {
+            handlerResponse(res, err, result, 'redis.lpushDistincts');
+        });
+    }
+};
 Worker.prototype.spop = function (req, res, collection) {
     var name = collection.name;
     redis.spop(name, function (err, result) {
@@ -350,5 +365,5 @@ Worker.prototype.mysql_select = function (req, res, collection) {
     });
 };
 
-Worker.prototype.funs = ['spopsadd', 'multisaddOrBak', 'delOrBak', 'rpop', 'lpushs', 'find', 'findAndModify', 'save', 'saveOrUpdateAll', 'rpoplpush', 'saveOrUpdate', 'dropCollection', 'findField', 'exists', 'incr', 'remove', 'mysql_save', 'mysql_update', 'mysql_select', 'multilpush', 'sadds', 'multisadd', 'spop', 'saddDistinct', 'saddDistincts', 'lpop', 'del', 'get', 'set'];
+Worker.prototype.funs = ['spopsadd', 'multisaddOrBak', 'delOrBak', 'rpop', 'lpushs', 'find', 'findAndModify', 'save', 'saveOrUpdateAll', 'rpoplpush', 'saveOrUpdate', 'dropCollection', 'findField', 'exists', 'incr', 'remove', 'mysql_save', 'mysql_update', 'mysql_select', 'multilpush', 'sadds', 'multisadd', 'spop', 'saddDistinct', 'saddDistincts','lpushDistincts', 'lpop', 'del', 'get', 'set'];
 module.exports = Worker;
